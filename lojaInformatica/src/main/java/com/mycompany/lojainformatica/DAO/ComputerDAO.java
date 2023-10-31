@@ -38,11 +38,13 @@ public class ComputerDAO {
 
     public boolean deleteComputer(int id) {
         try {
+            System.out.println(id);
             String sql = "DELETE FROM computador WHERE id=?";
             PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
             stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.rowDeleted()) {
+           boolean  rows  = stmt.execute();
+           System.out.println(rows);
+            if (rows == true) {
                 return true;
             }
             return false;

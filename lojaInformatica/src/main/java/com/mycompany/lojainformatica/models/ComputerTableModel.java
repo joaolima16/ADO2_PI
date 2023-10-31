@@ -1,5 +1,6 @@
 package com.mycompany.lojainformatica.models;
 
+import com.mycompany.lojainformatica.DAO.ComputerDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -11,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 public class ComputerTableModel extends AbstractTableModel{
     private List<Computer> computers = new ArrayList<>();
     private String[] columns = {"Id", "Marca", "HD", "Processador"};
-
+    ComputerDAO computerDao = new ComputerDAO();
     @Override
     public String getColumnName(int column) {
         return columns[column];
@@ -47,7 +48,12 @@ public class ComputerTableModel extends AbstractTableModel{
         this.computers.add(computer);
         this.fireTableDataChanged();
     }
-    public void deleteRow(Computer computer){
-        
+    public void deleteRow(int id, int row){
+        boolean deleteExists = computerDao.deleteComputer(id);
+        System.out.println(deleteExists);
+        if(deleteExists == true) {
+            this.computers.remove(row);
+            this.fireTableRowsDeleted(row, row);
+        }
     }
 }
