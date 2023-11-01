@@ -46,6 +46,7 @@ public class Register extends javax.swing.JFrame {
         jtfHd.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Processador");
 
         jbtnRegister.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -57,6 +58,7 @@ public class Register extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("HD");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
