@@ -11,6 +11,7 @@ public class ComputerDAO {
     public boolean insertComputer(Computer computer) {
         try {
             String sql = "INSERT INTO computador(marca, hd, processador) VALUES (?,?,?)";
+            System.out.println(computer.getProcessador());
             PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
             stmt.setString(1, Computer.getMarca());
             stmt.setString(2, computer.getHd());
@@ -44,7 +45,7 @@ public class ComputerDAO {
             stmt.setInt(1, id);
            boolean  rows  = stmt.execute();
            System.out.println(rows);
-            if (rows == true) {
+            if (rows != true) {
                 return true;
             }
             return false;

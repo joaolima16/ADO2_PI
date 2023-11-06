@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author João Vitor
- */
 public class ComputerTableModel extends AbstractTableModel{
     private List<Computer> computers = new ArrayList<>();
     private String[] columns = {"Id", "Marca", "HD", "Processador"};
@@ -29,6 +25,12 @@ public class ComputerTableModel extends AbstractTableModel{
         return columns.length;
     }
 
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+       
+    }
+
+    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        switch(columnIndex){

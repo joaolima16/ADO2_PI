@@ -1,24 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.lojainformatica.views;
 
 import com.mycompany.lojainformatica.DAO.ComputerDAO;
 import com.mycompany.lojainformatica.models.Computer;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author João Vitor
- */
 public class Register extends javax.swing.JFrame {
-     ComputerDAO computerDao = new ComputerDAO();
-     Computer computer = new Computer();
+
+    ComputerDAO computerDao = new ComputerDAO();
+    Computer computer = new Computer();
+
     public Register() {
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,6 +46,7 @@ public class Register extends javax.swing.JFrame {
         jtfHd.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Processador");
 
         jbtnRegister.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -64,6 +58,7 @@ public class Register extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("HD");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -125,19 +120,22 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegisterActionPerformed
-    if(jtfHd.getText().length() == 0 || jtfProcessador.getText().length() == 0){
-        JOptionPane.showMessageDialog(null, "Prencha todos os campos");
-    }
-    else{
-          computer.setHd(jtfHd.getText());
-          computer.setProcessador(jtfProcessador.getText());
-          boolean value = computerDao.insertComputer(computer);
-          System.out.println(value);
-    }
-  
-     
+        if (jtfHd.getText().length() == 0 || jtfProcessador.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+        } else {
+            computer.setHd(jtfHd.getText());
+            computer.setProcessador(jtfProcessador.getText());
+            boolean value = computerDao.insertComputer(computer);
+            if (value == true) {
+                TableComputers tableForm = new TableComputers();
+                tableForm.setVisible(true);
+                this.dispose();
+            }
+        }
+
+
     }//GEN-LAST:event_jbtnRegisterActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
