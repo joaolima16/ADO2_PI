@@ -11,7 +11,6 @@ public class ComputerDAO {
     public boolean insertComputer(Computer computer) {
         try {
             String sql = "INSERT INTO computador(marca, hd, processador) VALUES (?,?,?)";
-            System.out.println(computer.getProcessador());
             PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
             stmt.setString(1, Computer.getMarca());
             stmt.setString(2, computer.getHd());
@@ -37,14 +36,26 @@ public class ComputerDAO {
         }
     }
 
+    public void updateComputer(Computer computer) {
+        try {
+            String sql = "UPDATE computador SET hd = ?, processador = ? WHERE id = ?";
+            PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
+            stmt.setString(1, computer.getHd());
+            stmt.setString(2, computer.getProcessador());
+            stmt.setInt(3, computer.getId());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Error(ex);
+        }
+
+    }
+
     public boolean deleteComputer(int id) {
         try {
-            System.out.println(id);
             String sql = "DELETE FROM computador WHERE id=?";
             PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
             stmt.setInt(1, id);
-           boolean  rows  = stmt.execute();
-           System.out.println(rows);
+            boolean rows = stmt.execute();
             if (rows != true) {
                 return true;
             }
@@ -52,6 +63,17 @@ public class ComputerDAO {
         } catch (SQLException ex) {
             throw new Error(ex);
         }
+    }
 
+    public ResultSet filterComputer(String processador) {
+        try {
+            String sql = "SELECT * FROM computador WHERE processador LIKE ?";
+            PreparedStatement stmt = ConnectionDB.getConn().prepareStatement(sql);
+            stmt.setString(1, processador+"%");
+            ResultSet rs = stmt.executeQuery();
+            return rs;
+        } catch (SQLException ex) {
+            throw new Error(ex);
+        }
     }
 }
